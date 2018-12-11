@@ -48,9 +48,9 @@ CONFIG_PIE=y
 # CONFIG_FEATURE_SHARED_BUSYBOX is not set
 CONFIG_CROSS_COMPILER_PREFIX="aarch64-linux-android-"
 CONFIG_SYSROOT="/tc/arm64/sysroot"
-CONFIG_EXTRA_CFLAGS="-fno-builtin -DANDROID -D__ANDROID__ -D__ANDROID_API__=21 -DSK_RELEASE -nostdlib -march=armv8-a -fpic -fno-short-enums -fgcse-after-reload -frename-registers -fuse-ld=bfd -Os "
+CONFIG_EXTRA_CFLAGS="-DANDROID -D__ANDROID__ -D__ANDROID_API__=21 -DSK_RELEASE -nostdlib -march=armv8-a -fpic -fno-short-enums -fgcse-after-reload -frename-registers -fuse-ld=bfd -Os "
 CONFIG_EXTRA_LDFLAGS="-Xlinker -z -Xlinker muldefs -nostdlib -Bdynamic -Xlinker -dynamic-linker -Xlinker /system/bin/linker -Xlinker -z -Xlinker nocopyreloc -Xlinker --no-undefined ${SYSROOT}/usr/lib/crtbegin_dynamic.o ${SYSROOT}/usr/lib/crtend_android.o"
-CONFIG_EXTRA_LDLIBS=""
+CONFIG_EXTRA_LDLIBS="m c gcc"
 # CONFIG_USE_PORTABLE_CODE is not set
 CONFIG_STACK_OPTIMIZATION_386=n
 

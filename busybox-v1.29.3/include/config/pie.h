@@ -1,1 +1,1 @@
-#undef CONFIG_PIE
+#define CONFIG_PIE 1

@@ -31,12 +31,12 @@
 
 static int ioprio_set(int which, int who, int ioprio)
 {
-	return syscall(SYS_ioprio_set, which, who, ioprio);
+	return syscall(__NR_ioprio_set, which, who, ioprio);
 }
 
 static int ioprio_get(int which, int who)
 {
-	return syscall(SYS_ioprio_get, which, who);
+	return syscall(__NR_ioprio_get, which, who);
 }
 
 enum {

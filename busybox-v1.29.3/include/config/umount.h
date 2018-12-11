@@ -1,1 +1,1 @@
-#undef CONFIG_UMOUNT
+#define CONFIG_UMOUNT 1

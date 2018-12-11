@@ -25,6 +25,13 @@
 //config:	date is used to set the system date or display the
 //config:	current time in the given format.
 //config:
+//config:config FEATURE_DATE_SET
+//config:	bool "Enable system date/time setting (-s)"
+//config:	default y
+//config:	depends on DATE
+//config:	help
+//config:	  Enable system date/time setting option (-s).
+//config:
 //config:config FEATURE_DATE_ISOFMT
 //config:	bool "Enable ISO date format output (-I)"
 //config:	default y
@@ -157,7 +164,9 @@ enum {
 static const char date_longopts[] ALIGN1 =
 		"rfc-822\0"   No_argument       "R"
 		"rfc-2822\0"  No_argument       "R"
+		#if ENABLE_FEATURE_DATE_SET
 		"set\0"       Required_argument "s"
+		#endif
 		"utc\0"       No_argument       "u"
 	/*	"universal\0" No_argument       "u" */
 		"date\0"      Required_argument "d"
@@ -302,10 +311,12 @@ int date_main(int argc UNUSED_PARAM, char **argv)
 			tm_time.tm_isdst = -1;
 		ts.tv_sec = validate_tm_time(date_str, &tm_time);
 
+		#if ENABLE_FEATURE_DATE_SET
 		/* if setting time, set it */
 		if ((opt & OPT_SET) && stime(&ts.tv_sec) < 0) {
 			bb_perror_msg("can't set date");
 		}
+		#endif
 	}
 
 	/* Display output */

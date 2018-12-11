@@ -1,1 +1,1 @@
-#undef CONFIG_VOLUMEID
+#define CONFIG_VOLUMEID 1

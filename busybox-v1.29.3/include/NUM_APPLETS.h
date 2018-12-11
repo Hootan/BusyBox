@@ -1,1 +1,1 @@
-#define NUM_APPLETS 25
+#define NUM_APPLETS 28

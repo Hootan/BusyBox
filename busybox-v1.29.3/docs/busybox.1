@@ -129,7 +129,7 @@
 .\" ========================================================================
 .\"
 .IX Title "BUSYBOX 1"
-.TH BUSYBOX 1 "2018-11-29" "version 1.29.3-MINI MiX" "busybox"
+.TH BUSYBOX 1 "2018-12-11" "version 1.29.3-MINI MiX" "busybox"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
@@ -217,8 +217,8 @@ Currently available applets include:
 .PP
 .Vb 3
 \&        [, [[, cat, chgrp, chmod, chown, cp, cut, dd, du, ln, ls, md5sum,
-\&        mkdir, mkfifo, mv, readlink, rm, rmdir, sha1sum, sha256sum, sha3sum,
-\&        sha512sum, test, touch
+\&        mkdir, mkfifo, mount, mountpoint, mv, readlink, rm, rmdir, sha1sum,
+\&        sha256sum, sha3sum, sha512sum, test, touch, umount
 .Ve
 .SH "COMMAND DESCRIPTIONS"
 .IX Header "COMMAND DESCRIPTIONS"
@@ -416,6 +416,52 @@ Create named pipe
 .Vb 1
 \&        \-m MODE Mode (default a=rw)
 .Ve
+.IP "\fBmount\fR" 4
+.IX Item "mount"
+mount [\s-1OPTIONS\s0] [\-o \s-1OPT\s0] \s-1DEVICE NODE\s0
+.Sp
+Mount a filesystem. Filesystem autodetection requires /proc.
+.Sp
+.Vb 10
+\&        \-a              Mount all filesystems in fstab
+\&        \-f              Dry run
+\&        \-i              Don\*(Aqt run mount helper
+\&        \-v              Verbose
+\&        \-r              Read\-only mount
+\&        \-t FSTYPE[,...] Filesystem type(s)
+\&        \-O OPT          Mount only filesystems with option OPT (\-a only)
+\&\-o OPT:
+\&        loop            Ignored (loop devices are autodetected)
+\&        [a]sync         Writes are [a]synchronous
+\&        [no]atime       Disable/enable updates to inode access times
+\&        [no]diratime    Disable/enable atime updates to directories
+\&        [no]relatime    Disable/enable atime updates relative to modification time
+\&        [no]dev         (Dis)allow use of special device files
+\&        [no]exec        (Dis)allow use of executable files
+\&        [no]suid        (Dis)allow set\-user\-id\-root programs
+\&        [r]shared       Convert [recursively] to a shared subtree
+\&        [r]slave        Convert [recursively] to a slave subtree
+\&        [r]private      Convert [recursively] to a private subtree
+\&        [un]bindable    Make mount point [un]able to be bind mounted
+\&        [r]bind         Bind a file or directory [recursively] to another location
+\&        move            Relocate an existing mount point
+\&        remount         Remount a mounted filesystem, changing flags
+\&        ro              Same as \-r
+.Ve
+.Sp
+There are filesystem-specific \-o flags.
+.IP "\fBmountpoint\fR" 4
+.IX Item "mountpoint"
+mountpoint [\-q] <[\-dn] \s-1DIR\s0 | \-x \s-1DEVICE\s0>
+.Sp
+Check if the directory is a mountpoint
+.Sp
+.Vb 4
+\&        \-q      Quiet
+\&        \-d      Print major/minor device number of the filesystem
+\&        \-n      Print device name of the filesystem
+\&        \-x      Print major/minor device number of the blockdevice
+.Ve
 .IP "\fBmv\fR" 4
 .IX Item "mv"
 mv [\-fin] \s-1SOURCE DEST\s0
@@ -491,6 +537,20 @@ Update the last-modified date on the given FILE[s]
 \&        \-d DT   Date/time to use
 \&        \-t DT   Date/time to use
 \&        \-r FILE Use FILE\*(Aqs date/time
+.Ve
+.IP "\fBumount\fR" 4
+.IX Item "umount"
+umount [\s-1OPTIONS\s0] FILESYSTEM|DIRECTORY
+.Sp
+Unmount file systems
+.Sp
+.Vb 6
+\&        \-a      Unmount all file systems
+\&        \-r      Try to remount devices as read\-only if mount is busy
+\&        \-l      Lazy umount (detach filesystem)
+\&        \-f      Force umount (i.e., unreachable NFS server)
+\&        \-d      Free loop device if it has been used
+\&        \-t FSTYPE[,...] Unmount only these filesystem type(s)
 .Ve
 .SH "LIBC NSS"
 .IX Header "LIBC NSS"

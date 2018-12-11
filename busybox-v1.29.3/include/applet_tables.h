@@ -1,6 +1,6 @@
 /* This is a generated file, don't edit */
 
-#define NUM_APPLETS 25
+#define NUM_APPLETS 28
 #define KNOWN_APPNAME_OFFSETS 0
 
 const char applet_names[] ALIGN1 = ""
@@ -19,6 +19,8 @@ const char applet_names[] ALIGN1 = ""
 "md5sum" "\0"
 "mkdir" "\0"
 "mkfifo" "\0"
+"mount" "\0"
+"mountpoint" "\0"
 "mv" "\0"
 "readlink" "\0"
 "rm" "\0"
@@ -29,6 +31,7 @@ const char applet_names[] ALIGN1 = ""
 "sha512sum" "\0"
 "test" "\0"
 "touch" "\0"
+"umount" "\0"
 ;
 
 #define APPLET_NO_cat 2
@@ -44,16 +47,19 @@ const char applet_names[] ALIGN1 = ""
 #define APPLET_NO_md5sum 12
 #define APPLET_NO_mkdir 13
 #define APPLET_NO_mkfifo 14
-#define APPLET_NO_mv 15
-#define APPLET_NO_readlink 16
-#define APPLET_NO_rm 17
-#define APPLET_NO_rmdir 18
-#define APPLET_NO_sha1sum 19
-#define APPLET_NO_sha256sum 20
-#define APPLET_NO_sha3sum 21
-#define APPLET_NO_sha512sum 22
-#define APPLET_NO_test 23
-#define APPLET_NO_touch 24
+#define APPLET_NO_mount 15
+#define APPLET_NO_mountpoint 16
+#define APPLET_NO_mv 17
+#define APPLET_NO_readlink 18
+#define APPLET_NO_rm 19
+#define APPLET_NO_rmdir 20
+#define APPLET_NO_sha1sum 21
+#define APPLET_NO_sha256sum 22
+#define APPLET_NO_sha3sum 23
+#define APPLET_NO_sha512sum 24
+#define APPLET_NO_test 25
+#define APPLET_NO_touch 26
+#define APPLET_NO_umount 27
 
 #ifndef SKIP_applet_main
 int (*const applet_main[])(int argc, char **argv) = {
@@ -72,6 +78,8 @@ ls_main,
 md5_sha1_sum_main,
 mkdir_main,
 mkfifo_main,
+mount_main,
+mountpoint_main,
 mv_main,
 readlink_main,
 rm_main,
@@ -82,6 +90,7 @@ md5_sha1_sum_main,
 md5_sha1_sum_main,
 test_main,
 touch_main,
+umount_main,
 };
 #endif
 
@@ -89,10 +98,10 @@ const uint8_t applet_flags[] ALIGN1 = {
 0x8f,
 0xaa,
 0xa2,
-0xae,
-0xbb,
-0xea,
-0x03,
+0x2e,
+0xba,
+0xab,
+0xbe,
 };
 
 const uint8_t applet_install_loc[] ALIGN1 = {
@@ -108,5 +117,6 @@ const uint8_t applet_install_loc[] ALIGN1 = {
 0x11,
 0x11,
 0x11,
-0x01,
+0x11,
+0x11,
 };

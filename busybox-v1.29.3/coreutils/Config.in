@@ -97,6 +97,13 @@ config DATE
 	date is used to set the system date or display the
 	current time in the given format.
 
+config FEATURE_DATE_SET
+	bool "Enable system date/time setting (-s)"
+	default y
+	depends on DATE
+	help
+	  Enable system date/time setting option (-s).
+
 config FEATURE_DATE_ISOFMT
 	bool "Enable ISO date format output (-I)"
 	default y
